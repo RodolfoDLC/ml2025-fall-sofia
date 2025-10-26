@@ -9,28 +9,35 @@ Simple program for module4:
 
 def main():
     try:
-        N = int(input().strip())
+        N = int(input("Enter the number of integers (N): ").strip())
     except Exception:
-        # invalid N
+        print("Invalid input. Please enter a valid integer.")
         return
     if N <= 0:
+        print("N must be a positive integer.")
         return
+    
     nums = []
+    print(f"Enter {N} integers (one per line):")
     for i in range(N):
         try:
-            v = int(input().strip())
+            v = int(input(f"Number {i+1}: ").strip())
         except Exception:
+            print("Invalid input. Please enter a valid integer.")
             return
         nums.append(v)
+    
     try:
-        X = int(input().strip())
+        X = int(input("Enter the number to search for (X): ").strip())
     except Exception:
+        print("Invalid input. Please enter a valid integer.")
         return
+    
     try:
         idx = nums.index(X) + 1
-        print(idx)
+        print(f"Result: {idx}")
     except ValueError:
-        print(-1)
+        print("Result: -1")
 
 if __name__ == "__main__":
     main()
