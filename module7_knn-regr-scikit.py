@@ -118,22 +118,20 @@ def main():
     
     # Read N (x, y) points
     print(f"\nEnter {N} data points (x, y) one by one:")
-    x_list = []
-    y_list = []
+    # Pre-allocate NumPy arrays for better performance
+    X_array = np.empty(N, dtype=np.float64)
+    y_array = np.empty(N, dtype=np.float64)
     
     for i in range(N):
         try:
             x = float(input(f"Point {i+1} - Enter x value: ").strip())
             y = float(input(f"Point {i+1} - Enter y value: ").strip())
-            x_list.append(x)
-            y_list.append(y)
+            # Direct insertion into pre-allocated NumPy arrays
+            X_array[i] = x
+            y_array[i] = y
         except ValueError:
             print("Error: Invalid input. Please enter valid real numbers for x and y.")
             return
-    
-    # Convert to numpy arrays using NumPy for data processing
-    X_array = np.array(x_list, dtype=np.float64)
-    y_array = np.array(y_list, dtype=np.float64)
     
     # Create KNNRegressionScikit instance and add points
     knn_regressor = KNNRegressionScikit()
